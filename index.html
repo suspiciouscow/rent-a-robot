@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Marketplace - Rent & Sell Robots</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🤖</span>
+                    <span class="logo-text">Robot Marketplace</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#robots" class="nav-link">Browse Robots</a>
+                    <a href="#list" class="nav-link">List Your Robot</a>
+                    <button class="btn-secondary" id="loginBtn">Login</button>
+                    <button class="btn-primary" id="signupBtn">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">The Future of Robotics is Here</h1>
+                <p class="hero-subtitle">Rent, buy, or sell cutting-edge robots for training, research, and innovation</p>
+                <div class="hero-buttons">
+                    <a href="#robots" class="btn-primary btn-large">Browse Robots</a>
+                    <a href="#list" class="btn-secondary btn-large">List Your Robot</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-gradient"></div>
+    </section>
+
+    <!-- Robots Section -->
+    <section id="robots" class="robots-section">
+        <div class="container">
+            <h2 class="section-title">Featured Robots</h2>
+            <div class="robots-grid" id="robotsGrid">
+                <!-- Robots will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- List Robot Section -->
+    <section id="list" class="list-section">
+        <div class="container">
+            <div class="list-content">
+                <h2 class="section-title">List Your Robot</h2>
+                <p class="section-subtitle">Share your robotics equipment with the community</p>
+                <form class="list-form" id="listForm">
+                    <div class="form-group">
+                        <label for="robotName">Robot Name</label>
+                        <input type="text" id="robotName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="robotType">Robot Type</label>
+                        <select id="robotType" required>
+                            <option value="">Select type...</option>
+                            <option value="arm">Robotic Arm</option>
+                            <option value="quadruped">Quadruped Robot</option>
+                            <option value="drone">Drone</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price per Day ($)</label>
+                        <input type="number" id="price" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Listing Type</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="listingType" value="rent" checked>
+                                <span>Rent</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="listingType" value="sell">
+                                <span>Sell</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Options</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="delivery" value="pickup" checked>
+                                <span>Pickup Available</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="delivery" value="delivery">
+                                <span>Delivery Available</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary btn-large">List Robot</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Robot Marketplace</h3>
+                    <p>Connecting robotics enthusiasts worldwide</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#robots">Browse</a>
+                    <a href="#list">List Robot</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Robot Marketplace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-primary btn-large">Login</button>
+            </form>
+            <p class="modal-switch">Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required>
+                </div>
+                <button type="submit" class="btn-primary btn-large">Create Account</button>
+            </form>
+            <p class="modal-switch">Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
