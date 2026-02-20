@@ -3,194 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robot Marketplace - Rent & Sell Robots</title>
+    <title>Robot Marketplace</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">
-                    <span class="logo-icon">🤖</span>
-                    <span class="logo-text">Robot Marketplace</span>
-                </div>
-                <div class="nav-links">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#robots" class="nav-link">Browse Robots</a>
-                    <a href="#list" class="nav-link">List Your Robot</a>
-                    <button class="btn-secondary" id="loginBtn">Login</button>
-                    <button class="btn-primary" id="signupBtn">Sign Up</button>
-                </div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Robot Marketplace</a>
+            <div class="nav-links">
+                <a href="#browse">Browse</a>
+                <a href="#list">List a Robot</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="loginBtn">Log in</button>
+                <button class="btn btn-dark" id="signupBtn">Sign up</button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">The Future of Robotics is Here</h1>
-                <p class="hero-subtitle">Rent, buy, or sell cutting-edge robots for training, research, and innovation</p>
-                <div class="hero-buttons">
-                    <a href="#robots" class="btn-primary btn-large">Browse Robots</a>
-                    <a href="#list" class="btn-secondary btn-large">List Your Robot</a>
-                </div>
-            </div>
-        </div>
-        <div class="hero-gradient"></div>
-    </section>
-
-    <!-- Robots Section -->
-    <section id="robots" class="robots-section">
-        <div class="container">
-            <h2 class="section-title">Featured Robots</h2>
-            <div class="robots-grid" id="robotsGrid">
-                <!-- Robots will be dynamically loaded here -->
+    <section class="hero" id="home">
+        <div class="hero-inner">
+            <p class="hero-label">The marketplace for robotics</p>
+            <h1 class="hero-title">Rent and sell robots<br>for training & research</h1>
+            <p class="hero-desc">Access cutting-edge robotic arms, quadrupeds, and more. List your hardware or find the perfect robot for your next project.</p>
+            <div class="hero-actions">
+                <a href="#browse" class="btn btn-dark btn-lg">Browse robots</a>
+                <a href="#list" class="btn btn-outline btn-lg">List your robot</a>
             </div>
         </div>
     </section>
 
-    <!-- List Robot Section -->
-    <section id="list" class="list-section">
-        <div class="container">
-            <div class="list-content">
-                <h2 class="section-title">List Your Robot</h2>
-                <p class="section-subtitle">Share your robotics equipment with the community</p>
-                <form class="list-form" id="listForm">
-                    <div class="form-group">
-                        <label for="robotName">Robot Name</label>
-                        <input type="text" id="robotName" required>
+    <section class="browse" id="browse">
+        <div class="section-inner">
+            <h2 class="section-heading">Available now</h2>
+            <div class="cards" id="robotsGrid"></div>
+        </div>
+    </section>
+
+    <section class="list-section" id="list">
+        <div class="section-inner">
+            <div class="form-wrapper">
+                <h2 class="section-heading">List your robot</h2>
+                <p class="section-desc">Have robotics hardware sitting idle? Put it to work.</p>
+                <form id="listForm" class="form">
+                    <div class="field">
+                        <label for="robotName">Robot name</label>
+                        <input type="text" id="robotName" placeholder="e.g. SO-101 Robotic Arm" required>
                     </div>
-                    <div class="form-group">
-                        <label for="robotType">Robot Type</label>
+                    <div class="field">
+                        <label for="robotType">Type</label>
                         <select id="robotType" required>
-                            <option value="">Select type...</option>
+                            <option value="">Select a type</option>
                             <option value="arm">Robotic Arm</option>
-                            <option value="quadruped">Quadruped Robot</option>
+                            <option value="quadruped">Quadruped</option>
                             <option value="drone">Drone</option>
                             <option value="other">Other</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="field">
                         <label for="description">Description</label>
-                        <textarea id="description" rows="4" required></textarea>
+                        <textarea id="description" rows="3" placeholder="Tell people about your robot..." required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="price">Price per Day ($)</label>
-                        <input type="number" id="price" min="0" step="0.01" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Listing Type</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" name="listingType" value="rent" checked>
-                                <span>Rent</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="listingType" value="sell">
-                                <span>Sell</span>
-                            </label>
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="price">Price per day ($)</label>
+                            <input type="number" id="price" min="0" step="0.01" placeholder="0.00" required>
+                        </div>
+                        <div class="field">
+                            <label>Listing type</label>
+                            <div class="toggle-group">
+                                <label class="toggle"><input type="radio" name="listingType" value="rent" checked><span>Rent</span></label>
+                                <label class="toggle"><input type="radio" name="listingType" value="sell"><span>Sell</span></label>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Delivery Options</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="delivery" value="pickup" checked>
-                                <span>Pickup Available</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="delivery" value="delivery">
-                                <span>Delivery Available</span>
-                            </label>
+                    <div class="field">
+                        <label>Fulfillment</label>
+                        <div class="toggle-group">
+                            <label class="toggle"><input type="checkbox" name="delivery" value="pickup" checked><span>Pickup</span></label>
+                            <label class="toggle"><input type="checkbox" name="delivery" value="delivery"><span>Delivery</span></label>
                         </div>
                     </div>
-                    <button type="submit" class="btn-primary btn-large">List Robot</button>
+                    <button type="submit" class="btn btn-dark btn-lg btn-full">Publish listing</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Robot Marketplace</h3>
-                    <p>Connecting robotics enthusiasts worldwide</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="#home">Home</a>
-                    <a href="#robots">Browse</a>
-                    <a href="#list">List Robot</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <a href="#">Help Center</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Terms of Service</a>
-                </div>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="nav-logo">Robot Marketplace</span>
+                <p>The open marketplace for robotics hardware.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Robot Marketplace. All rights reserved.</p>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="#browse">Browse</a>
+                <a href="#list">List a robot</a>
             </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Robot Marketplace</p>
         </div>
     </footer>
 
     <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Login</h2>
-            <form id="loginForm">
-                <div class="form-group">
+    <div id="loginModal" class="modal-backdrop">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <h2>Log in</h2>
+            <form id="loginForm" class="form">
+                <div class="field">
                     <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" required>
+                    <input type="email" id="loginEmail" placeholder="you@example.com" required>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" required>
+                    <input type="password" id="loginPassword" placeholder="Your password" required>
                 </div>
-                <button type="submit" class="btn-primary btn-large">Login</button>
+                <button type="submit" class="btn btn-dark btn-lg btn-full">Log in</button>
             </form>
-            <p class="modal-switch">Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
+            <p class="modal-footer-text">No account? <a href="#" id="switchToSignup">Sign up</a></p>
         </div>
     </div>
 
     <!-- Signup Modal -->
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Create Account</h2>
-            <form id="signupForm">
-                <div class="form-group">
-                    <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" required>
+    <div id="signupModal" class="modal-backdrop">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <h2>Create an account</h2>
+            <form id="signupForm" class="form">
+                <div class="field">
+                    <label for="signupName">Full name</label>
+                    <input type="text" id="signupName" placeholder="Jane Doe" required>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="signupEmail">Email</label>
-                    <input type="email" id="signupEmail" required>
+                    <input type="email" id="signupEmail" placeholder="you@example.com" required>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" required>
+                    <input type="password" id="signupPassword" placeholder="At least 8 characters" required>
                 </div>
-                <div class="form-group">
-                    <label for="signupConfirmPassword">Confirm Password</label>
-                    <input type="password" id="signupConfirmPassword" required>
+                <div class="field">
+                    <label for="signupConfirmPassword">Confirm password</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Repeat your password" required>
                 </div>
-                <button type="submit" class="btn-primary btn-large">Create Account</button>
+                <button type="submit" class="btn btn-dark btn-lg btn-full">Create account</button>
             </form>
-            <p class="modal-switch">Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+            <p class="modal-footer-text">Have an account? <a href="#" id="switchToLogin">Log in</a></p>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
